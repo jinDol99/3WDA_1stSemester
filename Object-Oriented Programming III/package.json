@@ -1,0 +1,19 @@
+{
+  "name": "wd2a_nodejs_study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinDol99/WD2A_NodeJS_study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jinDol99/WD2A_NodeJS_study/issues"
+  },
+  "homepage": "https://github.com/jinDol99/WD2A_NodeJS_study#readme"
+}
