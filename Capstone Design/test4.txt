@@ -1,1 +1,19 @@
-dasfg
+** 공통 사항 **
+1. microsoft azure의 todayStory-STT 음성 서비스 리소스 그룹에서 상태가 활성화 되어 있는지 확인
+2. Speech Studio에 접속하여 지역과 리소스키가 현재 환경 변수값과 일치하는지 확인
+    2-1. 일치하지 않다면 CMD에서 아래의 키워드를 통해 각각 리소스키와 지역을 설정할 수 있음
+        setx SPEECH_KEY 키값(d68d...ec0b)
+        setx SPEECH_REGION 지역값(koreacentral)
+3. 설치된 파이썬 버전이 3.7 ~ 3.10 에 충족하는지 확인
+4. VS Code의 Python 확장이 최신 버전인지 확인
+5. 파이썬용 Speeck SDK 패키지가 설치 되어있는지 확인
+    5-1. 설치되어있지 않다면 CMD에서 아래의 키워드를 통해 패키지를 설치할 수 있음
+        pip install azure-cognitiveservices-speech
+
+** speech_recognition.py : 음성 -> 텍스트 변환 (STT) **
+    공식 가이드 : https://learn.microsoft.com/ko-kr/azure/cognitive-services/speech-service/get-started-speech-to-text?tabs=windows%2Cterminal&pivots=programming-language-python
+    스피치 스튜디오 : https://speech.microsoft.com/portal/4ceb0ed4b1414303bfd5b9ddbbe57975/speechtotexttool
+
+** speech_synthesis.py : 텍스트 -> 음성 변환 (TTS) **
+    공식 가이드 : https://learn.microsoft.com/ko-kr/azure/cognitive-services/speech-service/get-started-text-to-speech?tabs=windows%2Cterminal&pivots=programming-language-python
+    스피치 스튜디오 : https://speech.microsoft.com/portal/4ceb0ed4b1414303bfd5b9ddbbe57975/voicegallery
