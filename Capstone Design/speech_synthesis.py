@@ -10,7 +10,31 @@ service_region = "koreacentral"
 
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
 # Note: the voice setting will not overwrite the voice element in input SSML.
-speech_config.speech_synthesis_voice_name = "ko-KR-InJoonNeural"
+# speech_config.speech_synthesis_voice_name = "ko-KR-YuJinNeural"
+
+# Changes Voice 
+print("Enter number for change voice. (male: 1~3 / female: 11~15) >")
+voice = input()
+
+if voice == "1":
+    speech_config.speech_synthesis_voice_name = "ko-KR-BongJinNeural"
+elif voice == "2":
+    speech_config.speech_synthesis_voice_name = "ko-KR-GookMinNeural"
+elif voice == "3":
+    speech_config.speech_synthesis_voice_name = "ko-KR-InJoonNeural"
+elif voice == "11":
+    speech_config.speech_synthesis_voice_name = "ko-KR-JiMinNeural"
+elif voice == "12":
+    speech_config.speech_synthesis_voice_name = "ko-KR-SeoHyeonNeural"
+elif voice == "13":
+    speech_config.speech_synthesis_voice_name = "ko-KR-SoonBokNeural"
+elif voice == "14":
+    speech_config.speech_synthesis_voice_name = "ko-KR-SunHiNeural"
+elif voice == "15":
+    speech_config.speech_synthesis_voice_name = "ko-KR-YuJinNeural"
+else:
+    speech_config.speech_synthesis_voice_name = "ko-KR-BongJinNeural"
+print(f'Setting voice to "{speech_config.speech_synthesis_voice_name}"\n')
 
 # Get text from the console and synthesize to the default speaker.
 print("Enter some text that you want to speak >")

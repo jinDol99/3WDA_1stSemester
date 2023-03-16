@@ -11,7 +11,7 @@ def recognize_from_microphone():
 
     print("Speak into your microphone.")
     speech_recognition_result = speech_recognizer.recognize_once_async().get()
-
+    # str=speech_recognition_result.text
     if speech_recognition_result.reason == speechsdk.ResultReason.RecognizedSpeech:
         print("Recognized: {}".format(speech_recognition_result.text))
     elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
@@ -22,5 +22,5 @@ def recognize_from_microphone():
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
             print("Error details: {}".format(cancellation_details.error_details))
             print("Did you set the speech resource key and region values?")
-
+    
 recognize_from_microphone()
