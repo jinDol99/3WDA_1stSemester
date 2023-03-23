@@ -1,0 +1,20 @@
+{
+  "name": "learn-sequelize",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mariadb": "^3.1.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22",
+    "nunjucks": "^3.2.3",
+    "sequelize": "^6.29.3",
+    "sequelize-cli": "^6.6.0"
+  }
+}
