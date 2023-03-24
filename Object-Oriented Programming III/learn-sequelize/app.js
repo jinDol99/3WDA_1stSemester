@@ -6,6 +6,10 @@ const {sequelize} = require('./models');
 
 const app = express();
 
+const indexRouter = require("./routers");
+const usersRouter = require("./routers/users");
+const commentsRouter = require("./routers/comments");
+
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
@@ -28,6 +32,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
 // my routers
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/comments', commentsRouter);
 
 // 404 처리
 app.use((req, res, next) =>{
