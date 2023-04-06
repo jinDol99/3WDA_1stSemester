@@ -9,7 +9,7 @@ const passport = require('passport');
 
 dotenv.config();
 const pageRouter = require('./routes/page');
-const authRouter = require('./routes/auth')
+const authRouter = require('./routes/auth');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -51,20 +51,21 @@ app.use('/', pageRouter);
 app.use('/auth', authRouter);
 
 // 404
-app.use((req, res, next)=>{
-    const error = new Error('존재하지 않는 주소입니다.');
+app.use((req, res, next) => {
+    const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
     error.status = 404;
     next(error);
-});
+  });
 
 // 위에서 발생한 모든 에러가 여기에서 처리
-app.use((err, req, res, next)=>{
+app.use((err, req, res, next) => {
     res.locals.message = err.message;
+    res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
     res.status(err.status || 500);
     res.render('error');
-});
+  });
 
 // 서버 ON
 app.listen(app.get('port'), ()=>{
     console.log(app.get('port'),'번 포트에서 대기 중');
-})
+});
