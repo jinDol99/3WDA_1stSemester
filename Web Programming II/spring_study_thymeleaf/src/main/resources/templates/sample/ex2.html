@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Tymeleaf each 반복문 제어구조</h1>
+	<p>
+	<ul>
+		<li th:each="dto : ${list}">
+			[[${dto}]]
+		</li>
+	</ul>
+	<hr>
+	<h1>Thymeleaf each 반복문 상태객체 활용</h1>
+	<p>
+	<h2>순번, 인덱스 번호, 홀수/짝수 등 지정</h2>
+	<p>
+	<ul>
+		<li th:each="dto, state : ${list}">
+			[[${state.index}]] --- [[${dto}]]
+		</li>
+	</ul>
+	<hr>
+	<h1>Thymeleaf if 제어문</h1>
+	<h2>sno가 5의 배수만 출력</h2>
+	<p>
+	<ul>
+		<li th:each="dto, state : ${list}" th:if = "${dto.sno % 5 == 0}">
+			[[${dto}]]
+		</li>
+	</ul>
+	<hr>
+	<h1>Thymeleaf if, unless 제어구조</h1>
+	<h2>sno가 5로 나눈 나머지가 0일 경우 sno만 출력, 그렇지 않다면 SampleDTO의 name 출력</h2>
+	<p>
+	<ul>
+		<li th:each="dto, state : ${list}">
+			<span th:if="${dto.sno % 5 == 0}" th:text="${dto.sno +' : ---------------'+dto.sno"></span>
+			<span th:unless="${dto.sno % 5 == 0}" th:text="${dto.sno + ' : ' + dto.name}"></span>
+		</li>
+	</ul>
+</body>
+</html>

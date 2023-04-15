@@ -21,7 +21,7 @@ public class SampleController {
 	
 	@GetMapping("/ex1")
 	public void ex1() {
-		Log.info("ex1..........");
+		log.info("ex1..........");
 	}
 	
 	@GetMapping("ex2")
@@ -38,6 +38,6 @@ public class SampleController {
 				}).collect(Collectors.toList());
 		
 		model.addAttribute("list", list);
-		Log.info("ex2.................")
+		log.info("ex2.................");
 	}
 }
