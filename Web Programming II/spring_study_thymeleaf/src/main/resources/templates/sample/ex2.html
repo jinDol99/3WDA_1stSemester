@@ -32,13 +32,67 @@
 		</li>
 	</ul>
 	<hr>
-	<h1>Thymeleaf if, unless 제어구조</h1>
+ 	<h1>Thymeleaf if, unless 제어구조</h1>
 	<h2>sno가 5로 나눈 나머지가 0일 경우 sno만 출력, 그렇지 않다면 SampleDTO의 name 출력</h2>
 	<p>
 	<ul>
 		<li th:each="dto, state : ${list}">
-			<span th:if="${dto.sno % 5 == 0}" th:text="${dto.sno +' : ---------------'+dto.sno"></span>
+			<span th:if="${dto.sno % 5 == 0}" th:text="${dto.sno + '-----------' + dto.sno}"></span>
 			<span th:unless="${dto.sno % 5 == 0}" th:text="${dto.sno + ' : ' + dto.name}"></span>
+		</li>
+	</ul>
+	<hr>
+	<h1>Thymeleaf 삼항 연산자 제어구조1</h1>
+	<p>
+	<ul>
+		<li th:each="dto, state : ${list}" th:text="${dto.sno % 3 == 0} ? ${dto.sno}">
+		</li>
+	</ul>
+	<hr>
+	<h1>Thymeleaf 삼항 연산자 제어구조2</h1>
+	<p>
+	<ul>
+		<li th:each="dto, state : ${list}" th:text="${dto.sno % 3 == 0} ? ${dto.sno} : ${dto.name}">
+		</li>
+	</ul>
+	<hr>
+	
+	<h1>Thymeleaf 삼항 연산자 제어구조3 - 특정상황 CSS반영</h1>
+	<p>
+	<style>
+		.target{
+			background-color: red;
+		}
+	</style>
+	<ul>
+		<li th:each="dto, state : ${list}" th:class="${dto.sno % 5 == 0} ? 'target'" th:text="${dto}">
+		</li>
+	</ul>
+	
+	<hr>
+	<h1>Thymeleaf th:block 활용</h1>
+	<p>
+	<ul>
+		<th:block th:each="dto: ${list}">
+			<li th:text="${dto.sno % 5 == 0}? ${dto.sno} : ${dto.name}"></li>
+		</th:block>
+	</ul>
+	
+	<hr>
+	<h1>Thymeleaf 기본 객체 #numbers 활용</h1>
+	<p>
+	<ul>
+		<li th:each="dto : ${list}">
+			[[${#numbers.formatInteger(dto.sno, 5)}]]
+		</li>
+	</ul>
+	
+	<hr>
+	<h1>Thymeleaf #temporals 활용, 날짜 포맷 설정</h1>
+	<p>
+	<ul>
+		<li th:each="dto : ${list}">
+			[[${dto.sno}]] --- [[${#temporals.format(dto.regTime, 'yyyy/MM/dd')}]]
 		</li>
 	</ul>
 </body>
