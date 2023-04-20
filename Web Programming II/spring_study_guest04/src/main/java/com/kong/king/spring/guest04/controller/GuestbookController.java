@@ -65,7 +65,9 @@ public class GuestbookController {
 		
 		return "redirect:/guestbook/list";
 	}
-	
+
+	// 데스크톱 작업 시작 - 4.21 0:09 | 63 슬라이드
+	// 건들일게 없는데??? 모?지
 	@GetMapping({"/read", "/modify"})
 	public void read(long gno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
 		log.info("gno" + gno);
@@ -73,7 +75,8 @@ public class GuestbookController {
 		GuestbookDTO dto = service.read(gno);
 		model.addAttribute("dto", dto);
 	}
-	
+	// 데스크톱 작업 끝
+
 	@PostMapping("/remove")
 	public String remove(long gno, RedirectAttributes redirectAttributes) {
 		log.info("gno" + gno);
@@ -96,6 +99,10 @@ public class GuestbookController {
 		service.modify(dto);
 		
 		redirectAttributes.addAttribute("page", requestDTO.getPage());
+		// 데스크톱 작업 시작 - 4.21 0:10 | 63 슬라이드
+		redirectAttributes.addAttribute("type", requestDTO.getType());
+		redirectAttributes.addAttribute("keyword", requestDTO.getKeyword());
+		// 데스크톱 작업 끝
 		redirectAttributes.addAttribute("gno", dto.getGno());
 		
 		return "redirect:/guestbook/read";

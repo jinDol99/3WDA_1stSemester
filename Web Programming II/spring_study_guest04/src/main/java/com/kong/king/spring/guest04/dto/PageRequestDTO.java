@@ -15,6 +15,11 @@ public class PageRequestDTO {
 
 		private int page;
 		private int size;
+
+		// 데스크톱 작업 시작 - 4.20 23:21 | 53 슬라이드
+		private String type;
+		private String Keyword;
+		// 데스크톱 작업 끝
 		
 		public PageRequestDTO() {
 			this.page = 1;

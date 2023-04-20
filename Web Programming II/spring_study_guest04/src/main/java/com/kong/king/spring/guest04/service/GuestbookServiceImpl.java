@@ -42,7 +42,14 @@ public class GuestbookServiceImpl implements GuestbookService {
 	public PageResultDTO<GuestbookDTO, Guestbook> getList(PageRequestDTO requestDTO) {
 		Pageable pageable = requestDTO.getPageable(Sort.by("gno").descending());
 		
-		Page<Guestbook> result = repository.findAll(pageable);
+		// 데스크톱 작업 시작 - 4.20 23:24 | 55 슬라이드 - 기존 코드 수정
+		// Page<Guestbook> result = repository.findAll(pageable);
+
+		BooleanBuilder booleanBuilder = getSearch(requestDTO); // 검색조건 처리
+		
+		Page<Guestbook> result = repository.findAll(booleanBuilder, pageable);	// Querydsl 사용
+
+		// 데스크톱 작업 끝
 		
 		Function<Guestbook, GuestbookDTO> fn = (entity -> entityToDto(entity));
 		
@@ -73,4 +80,38 @@ public class GuestbookServiceImpl implements GuestbookService {
 			repository.save(entity);
 		}
 	}
+
+	// 데스크톱 작업 시작 - 4.20 23:24 | 54 슬라이드
+	private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
+		String type = requestDTO.getType();
+		BooleanBuilder booleanBuilder = new BooleanBuilder();
+		QGuestbook qGuestbook = QGuestbook.guestbook;
+		String keyword = requestDTO.getKeyword();
+
+		BooleanExpression expression = qGuestbook.gno.gt(0L);
+
+		booleanBuilder.and(expression);
+
+		if(type == null || type.trim().lenth() == 0) {
+			return booleanBuilder;
+		}
+
+		BooleanBuilder conditionBuiler = new BooleanBuilder();
+
+		if(type.contains("t")) {
+			conditionBuiler.or(qGuestbook.title.contains(keyword));
+		}
+		if(type.contains("c")) {
+			conditionBuiler.or(qGuestbook.content.contains(keyword));
+		}
+		if(type.contains("w")) {
+			conditionBuiler.or(qGuestbook.writer.contains(keyword));
+		}
+
+		booleanBuilder.and(conditionBuiler);
+
+		return booleanBuilder;
+	}
+	// 데스크톱 작업 끝
+
 }
