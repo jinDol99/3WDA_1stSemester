@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:replace="~{/layout/layout1 :: setContent(~{this::content})}">
+		<th:block th:fragment="content">
+			<h1>layout의 content에 교체</h1>
+			<h3>exTemplate Page</h3>
+		</th:block>
+	</th:block>
+</body>
+</html>

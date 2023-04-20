@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입 폼 만들기 예제</title>
+    <style>
+        h2 {
+            border-radius: 5px;
+            background-color: wheat;
+            text-align: center;
+            padding: 15px 0;
+        }
+        #regform {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: auto;
+            width: 50%;
+            background-color: SandyBrown;
+        }
+    </style>
+    <script>
+        function signUp() {
+            alert("정말로 가입하시겠습니까?");
+            document.getElementById("regform").style.display = "none";
+            document.getElementById("rname").innerHTML= document.form1.name.value;
+            document.getElementById("remail").innerHTML= document.form1.email.value;
+            document.getElementById("result").setAttribute("style", "display: block; background-color: khaki;");
+            /* 
+            [03.] 함수 호출이 되었다면 아래의 코드를 순서대로 실행함
+                1. alert 창을 띄운 후, id가 regform에 해당하는 태그를 찾아(getElementById("regform"))
+                   해당하는 요소를 화면에서 감춤
+                2. id가 name인 요소를 트리구조를 참고하여 찾아(document.form1.name) 값을 반환(.value)
+                3. 그리고 해당 값을 id가 rname인 요소를 찾아 요소 속 내용을 위 값으로 수정(.innerHTML)
+                4. 2~3번의 과정을 대상을 remail과 form1.email로 변경하여 한번 더 반복
+                5. id가 result인 요소를 찾아 해당 요소의 style 속성값을 display: block으로 변경하여
+                   화면에 보이도록 하고, 배경색을 카키 색으로 변경
+            */
+        }
+    </script>
+</head>
+<body>
+    <h2>회원 가입</h2>
+    <hr>
+    <div id="regform">
+        <form name="form1">
+            <label>이름</label><br>
+            <input type="text" name="name" size="40"><br>
+            <hr>
+            <label>이메일</label><br>
+            <input type="email" name="email" size="40"><br>
+            <button type="button" onClick="signUp()">가입</button>
+            <!-- 
+            [02.] 버튼을 클릭하는(onClick) 이벤트가 발생하면 signUp() 함수를 호출하는 코드
+            -->
+        </form>
+    </div>
+    <div id="result" class="result">
+        <h3>가입 정보</h3>
+        <hr>
+        이름: <span id="rname"></span><br>
+        이메일: <span id="remail"></span><br>
+    </div>
+    <script>
+        document.getElementById("result").style.display = "none";
+    </script>
+    <!--
+    [01.] 기본적으로 가입정보가 있는 result 부분을 화면에 안보이게끔 하는 스크립트.
+        getElementById() 메서드를 통해 특정 id 값이 있는 부분을 찾은 후
+        .display = "none"으로 화면에서 해당 id에 해당하는 요소를 감춤.
+        
+        이 때, 해당 <div id="result"> 태그 이전에 이 <script>를 작성하면
+        id = result를 선언하기 전에 id를 찾게 되는 것이므로,
+        <script>는 반드시 <div id="result"> 이후에 위치해야함.
+    -->
+</body>
+</html>
