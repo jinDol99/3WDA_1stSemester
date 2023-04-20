@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelead.org" lang="ko">
+
+<th:block th:replace="~{layout/basic::setContent(~{this::content})}">
+	<th:block th:fragment="content">
+		<h1 class="mt-4">Guestbook 게시글 수정/삭제</h1>
+		
+		<form action="/guestbook/modify" method="post">
+		
+		<!-- 페이지 번호 -->
+		<input type="hidden" name="page" th:value="${requestDTO.page}">
+		</form>
+	</th:block>
+</th:block>
+</html>
